@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Skills</h1>
+
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Parent Name</th>
+      <th> Edit </th>
+      <th> Destroy </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @skills.each_with_index do |skill, index| %>
+      <tr>
+        <td><%= index+1 %></td>
+        <td><%= skill.name %></td>
+        <td><%= skill.parent.blank? ? '' : skill.parent.name %></td>
+        <td><%= link_to 'Edit', edit_skill_path(skill) %></td>
+        <td><%= link_to 'Destroy', skill, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<%= link_to 'New Skill', new_skill_path, class: "btn btn-primary" %>
