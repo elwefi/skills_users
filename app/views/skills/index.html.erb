@@ -10,6 +10,7 @@
       <th>#</th>
       <th>Name</th>
       <th>Parent Name</th>
+      <th> Add Users </th>
       <th> Edit </th>
       <th> Destroy </th>
     </tr>
@@ -19,7 +20,8 @@
       <tr>
         <td><%= index+1 %></td>
         <td><%= skill.name %></td>
-        <td><%= skill.parent.blank? ? '' : skill.parent.name %></td>
+        <td><%= skill.parent_name %></td>
+        <td><%= link_to 'Add User', skill_add_users_path(skill) %></td>
         <td><%= link_to 'Edit', edit_skill_path(skill) %></td>
         <td><%= link_to 'Destroy', skill, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

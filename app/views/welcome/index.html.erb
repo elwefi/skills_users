@@ -1,2 +1,23 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<h1>Skills Points</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th> # </th>
+      <th> Name </th>
+      <th> Points </th>
+      <th> User Counts </th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <% @skills_points.each_with_index do |sp, index| %>
+      <tr>
+        <td><%= index+1 %></td>
+        <td><%= sp['name'] %></td>
+        <td><%= sp['points'] %></td>
+        <td><%= sp['count'] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

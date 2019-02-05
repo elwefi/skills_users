@@ -1,0 +1,59 @@
+<h1>
+  Add Users for: 
+  <%= @skill.name %>  
+</h1>
+
+
+<%= form_with(model: @skill, local: true) do |form| %>
+  <% if @skill.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@skill.errors.count, "error") %> prohibited this @skill from being saved:</h2>
+
+      <ul>
+      <% @skill.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group row">
+    <%= form.label :parent_id, class: "col-2 col-form-label"%>
+    <div class="col-10">
+      <% for user in User.all %>
+        <div>
+          <%= check_box_tag "skill[user_ids][]", user.id, @skill.users.include?(user) %>
+          <%= user.name %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: 'btn btn-primary'%>
+  </div>
+<% end %>
+
+
+<h1>List Selected Users for
+  <%= @skill.name %> 
+</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th> # </th>
+      <th> Name </th>
+      <th> Points </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @skill.users.each_with_index do |user, index| %>
+      <tr>
+        <td><%= index+1 %></td>
+        <td><%= user.name %></td>
+        <td><%= user.points %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

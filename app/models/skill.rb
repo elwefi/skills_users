@@ -11,8 +11,13 @@ class Skill < ApplicationRecord
   	if children.exists?
   		[]
     else
-  	  Skill.all_parents.except_skill(id).collect {|sp| [ sp.name, sp.id ] }
+  	  self.class.all_parents.except_skill(id).pluck(:name, :id)
     end
+  end
+
+  # On peut le ajouter un Decorator
+  def parent_name
+    parent.blank? ? '' : parent.name
   end
 
 end

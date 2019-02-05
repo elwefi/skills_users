@@ -37,6 +37,11 @@ class SkillsController < ApplicationController
     end
   end
 
+  def add_users
+    @skill = Skill.includes(:users).find(params[:skill_id])
+  end
+
+
   # PATCH/PUT /skills/1
   # PATCH/PUT /skills/1.json
   def update
@@ -69,6 +74,6 @@ class SkillsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def skill_params
-      params.require(:skill).permit(:name, :parent_id)
+      params.require(:skill).permit(:name, :parent_id, { user_ids:[] })
     end
 end
